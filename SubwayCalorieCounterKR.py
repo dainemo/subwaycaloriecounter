@@ -23,9 +23,11 @@ main_sodium = main_df[main_df['Item'] == selected_main]['Sodium'].values[0]
 st.subheader("2. 추가 토핑/소스를 골라주세요")
 selected_toppings = st.multiselect("토핑 선택", topping_df['Item'].unique())
 # 선택한 토핑들의 칼로리만 쏙쏙 더하기
-topping_cal = topping_df[topping_df['Item'].isin(selected_toppings)]['Calorie(kcal)'].sum()
-topping_protein = topping_df[topping_df['Item'] == selected_toppings]['Protein(g)'].sum()
-topping_sodium = topping_df[topping_df['Item'] == selected_toppings]['Sodium(mg)'].sum()
+selected_topping_data = topping_df[topping_df['Item'].isin(selected_toppings)]
+
+topping_cal = selected_topping_data['Calorie(kcal)'].sum()
+topping_protein = selected_topping_data['Protein(g)'].sum()
+topping_sodium = selected_topping_data['Sodium(mg)'].sum()
 
 
 # --- 최종 결과 ---
@@ -34,6 +36,8 @@ total_pro = main_protein + topping_protein
 total_sod = main_sodium + topping_sodium
 
 st.divider()
-st.header(["🔥 총 칼로리: {total_cal} kcal / 493 kcal",
-           "🔥 총 단백질: {total_pro} g / 34 g",
-           "🔥 총 나트륨: {total_sod} mg / 650 mg"])
+
+
+st.header(f"🔥 총 칼로리: {total_cal} kcal / 493 kcal")
+st.header(f"🔥 총 단백질: {total_pro} g / 34 g")
+st.header(f"🔥 총 나트륨: {total_sod} mg / 650 mg")
