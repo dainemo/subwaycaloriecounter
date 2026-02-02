@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 
+
 # 1. 시트별로 데이터 따로 불러오기
 # 샌드위치 메뉴가 있는 시트
 main_df = pd.read_excel('KORSubwayNutrition.csv', sheet_name='Sandwiches')
