@@ -8,7 +8,7 @@ main_df = pd.read_excel('KORSubwayNutrition.csv', sheet_name='Sandwiches')
 # 토핑과 소스가 있는 시트
 topping_df = pd.read_excel('KORSubwayNutrition.csv', sheet_name='Toppings')
 
-st.title("서브웨이 칼로리 카운터")
+st.title("🥖 서브웨이 칼로리 카운터 🥖")
 
 # --- 메인 메뉴 선택 (Sheet1 데이터 사용) ---
 st.subheader("1. 메인 메뉴를 골라주세요")
@@ -33,6 +33,6 @@ total_pro = main_protein + topping_protein
 total_sod = main_sodium + topping_sodium
 
 st.divider()
-st.header(" 총 칼로리: {total_cal} kcal / 493 kcal
-              총 단백질: {total_pro} g / 34 g
-              총 나트륨: {total_sod} mg / 650 mg")
+st.header(["🔥 총 칼로리: {total_cal} kcal / 493 kcal",
+           "🔥 총 단백질: {total_pro} g / 34 g",
+           "🔥 총 나트륨: {total_sod} mg / 650 mg"])
