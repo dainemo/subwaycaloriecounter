@@ -14,8 +14,8 @@ st.title("🥖 서브웨이 칼로리 카운터")
 st.subheader("1. 메인 메뉴를 골라주세요")
 selected_main = st.selectbox("메뉴 선택", main_df['Item'].unique())
 main_cal = main_df[main_df['Item'] == selected_main]['Pure_Calorie'].values[0]
-main_protein = main_df[main_df['Item'] == selected_main['Protein'].values[0]
-main_sodium = main_df[main_df['Item'] == selected_main['Sodium'].values[0]
+main_protein = main_df[main_df['Item'] == selected_main]['Protein'].values[0]
+main_sodium = main_df[main_df['Item'] == selected_main]['Sodium'].values[0]
 
 
 # --- 토핑 선택 (Sheet2 데이터 사용) ---
@@ -23,8 +23,8 @@ st.subheader("2. 추가 토핑/소스를 골라주세요")
 selected_toppings = st.multiselect("토핑 선택", topping_df['Item'].unique())
 # 선택한 토핑들의 칼로리만 쏙쏙 더하기
 topping_cal = topping_df[topping_df['Item'].isin(selected_toppings)]['Calorie(kcal)'].sum()
-topping_protein = topping_df[topping_df['Item'] == selected_toppings['Protein(g)'].sum()
-topping_sodium = topping_df[topping_df['Item'] == selected_toppings['Sodium(mg)'].sum()
+topping_protein = topping_df[topping_df['Item'] == selected_toppings]['Protein(g)'].sum()
+topping_sodium = topping_df[topping_df['Item'] == selected_toppings]['Sodium(mg)'].sum()
 
 
 # --- 최종 결과 ---
