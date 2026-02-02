@@ -33,6 +33,6 @@ total_pro = main_protein + topping_protein
 total_sod = main_sodium + topping_sodium
 
 st.divider()
-st.header(f"🔥 총 칼로리: {total_cal} kcal / 493 kcal
+st.header("🔥 총 칼로리: {total_cal} kcal / 493 kcal
               총 단백질: {total_pro} g / 34 g
               총 나트륨: {total_sod} mg / 650 mg")
