@@ -19,25 +19,39 @@ st.title("🥖 서브웨이 칼로리 카운터 🥖")
 st.subheader("1. 메인 메뉴를 골라주세요")
 selected_main = st.selectbox("메뉴 선택", main_df['Item'].unique())
 main_cal = main_df[main_df['Item'] == selected_main]['Pure_Calorie'].values[0]
-main_protein = main_df[main_df['Item'] == selected_main]['Protein'].values[0]
-main_sodium = main_df[main_df['Item'] == selected_main]['Sodium'].values[0]
+main_pro = main_df[main_df['Item'] == selected_main]['Protein'].values[0]
+main_sod = main_df[main_df['Item'] == selected_main]['Sodium'].values[0]
 
 
-# --- 토핑 선택 (Sheet2 데이터 사용) ---
-st.subheader("2. 추가 토핑/소스를 골라주세요")
-selected_toppings = st.multiselect("토핑 선택", topping_df['Item'].unique())
-# 선택한 토핑들의 칼로리만 쏙쏙 더하기
-selected_topping_data = topping_df[topping_df['Item'].isin(selected_toppings)]
+# --- [1] 빵 선택 ---
+bread_options = topping_df[topping_df['Category'] == 'Bread']['Item'].unique()
+selected_bread = st.selectbox("1. 빵을 골라주세요", bread_options)
+bread_data = topping_df[topping_df['Item'].isin([selected_bread])]
 
-topping_cal = selected_topping_data['Calorie(kcal)'].sum()
-topping_protein = selected_topping_data['Protein(g)'].sum()
-topping_sodium = selected_topping_data['Sodium(mg)'].sum()
+# --- [2] 치즈 선택 ---
+cheese_options = topping_df[topping_df['Category'] == 'Cheese']['Item'].unique()
+selected_cheese = st.selectbox("2. 치즈를 골라주세요", cheese_options)
+cheese_data = topping_df[topping_df['Item'].isin([selected_cheese])]
+
+# --- [3] 소스 선택 ---
+sauce_options = topping_df[topping_df['Category'] == 'Sauce']['Item'].unique()
+selected_sauce = st.multiselect("3. 소스를 골라주세요 (최대 2개)", sauce_options, max_selections=2)
+sauce_data = topping_df[topping_df['Item'].isin(selected_sauce)]
+
+# --- [최종 계산] 모든 선택된 데이터를 하나로 합쳐서 계산해요 ---
+# 모든 데이터프레임을 하나로 합치는 기법! (리스트에 넣어서 합치기)
+all_selected_toppings = pd.concat([bread_data, cheese_data, sauce_data])
+
+total_topping_cal = all_selected_toppings['Calorie(kcal)'].sum()
+total_topping_pro = all_selected_toppings['Protein(g)'].sum()
+total_topping_sod = all_selected_toppings['Sodium(mg)'].sum()
+
+# 최종 결과 합산
+total_cal = main_cal + total_topping_cal
+total_pro = main_pro + total_topping_pro
+total_sod = main_sod + total_topping_sod
 
 
-# --- 최종 결과 ---
-total_cal = main_cal + topping_cal
-total_pro = main_protein + topping_protein
-total_sod = main_sodium + topping_sodium
 
 st.divider()
 
