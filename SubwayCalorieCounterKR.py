@@ -4,10 +4,10 @@ import pandas as pd
 
 # 1. 시트별로 데이터 따로 불러오기
 # 샌드위치 메뉴가 있는 시트
-main_df = pd.read_excel('KORSubwayNutrition.csv', sheet_name='Sandwiches', engine='openpyxl')
+main_df = pd.read_excel('KORSubwayNutrition.xlsx', sheet_name='Sandwiches', engine='openpyxl')
 
 # 토핑과 소스가 있는 시트
-topping_df = pd.read_excel('KORSubwayNutrition.csv', sheet_name='Toppings', engine='openpyxl')
+topping_df = pd.read_excel('KORSubwayNutrition.xlsx', sheet_name='Toppings', engine='openpyxl')
 
 st.title("🥖 서브웨이 칼로리 카운터 🥖")
 
