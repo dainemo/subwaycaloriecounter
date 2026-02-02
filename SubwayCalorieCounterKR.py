@@ -9,6 +9,10 @@ main_df = pd.read_excel('KORSubwayNutrition.xlsx', sheet_name='Sandwiches', engi
 # 토핑과 소스가 있는 시트
 topping_df = pd.read_excel('KORSubwayNutrition.xlsx', sheet_name='Toppings', engine='openpyxl')
 
+# 빈칸(NaN)이 있으면 모두 0으로 채워줘! (에러 방지 마법의 주문)
+main_df = main_df.fillna(0)
+topping_df = topping_df.fillna(0)
+
 st.title("🥖 서브웨이 칼로리 카운터 🥖")
 
 # --- 메인 메뉴 선택 (Sheet1 데이터 사용) ---
