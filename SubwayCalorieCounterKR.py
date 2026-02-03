@@ -60,9 +60,9 @@ total_topping_pro = all_selected_toppings['Protein(g)'].sum()
 total_topping_sod = all_selected_toppings['Sodium(mg)'].sum()
 
 # 최종 결과 합산
-total_cal = main_cal + total_topping_cal
-total_pro = main_pro + total_topping_pro
-total_sod = main_sod + total_topping_sod
+total_cal = main_cal + total_topping_cal + cookie_cal
+total_pro = main_pro + total_topping_pro + cookie_pro
+total_sod = main_sod + total_topping_sod + cookie_sod
 
 
 
